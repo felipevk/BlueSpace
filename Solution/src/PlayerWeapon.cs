@@ -221,6 +221,15 @@ namespace BlueSpace
 
 		}
 
+		public void SwitchWeapon( String gameObjectId, PlayerWeaponType weaponType )
+		{
+			PlayerWeaponComponentData playerWeapon = GetComponentData<PlayerWeaponComponentData>( gameObjectId );
+			WeaponData weaponData = weaponDataByType[(int)weaponType];
+
+			playerWeapon.type = weaponType;
+			playerWeapon.isAutomatic = weaponData.isAutomatic;
+		}
+
 		private void Shoot( String gameObjectId, Vector3 gunPos, PlayerWeaponComponentData playerWeaponData )
 		{
 			WeaponData weaponData = weaponDataByType[(int)playerWeaponData.type];
