@@ -1,0 +1,3 @@
+[submodule "Submodules/BlueEngine"]
+	path = Submodules/BlueEngine
+	url = https://github.com/felipevk/BlueEngine
