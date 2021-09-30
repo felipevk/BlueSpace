@@ -29,9 +29,11 @@ namespace BlueSpace
 			Texture2D healthTexture = Blue.Game.Instance.AssetManager.GetAsset<SpriteAsset>( hudData.assetName ).Texture2D;
 
 			Vector3 globalPos = GetGameObject( gameObjectId ).GetGlobalPosition();
-			Vector2 healthPointPos = new Vector2();
-			healthPointPos.X = globalPos.X;
-			healthPointPos.Y = globalPos.Y;
+			Vector2 healthPointPos = new Vector2
+			{
+				X = globalPos.X,
+				Y = globalPos.Y
+			};
 
 			for ( int i = 0; i < hudData.playerHealthData.health; i++ )
 			{
