@@ -151,6 +151,12 @@
 /processorParam:TextureFormat=Color
 /build:../Assets/playerRight.png;playerRight.png
 
+#begin ../Assets/shotgunShoot.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../Assets/shotgunShoot.wav;shotgunShoot.wav
+
 #begin PixeloidSans.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

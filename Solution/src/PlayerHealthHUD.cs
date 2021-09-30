@@ -35,7 +35,7 @@ namespace BlueSpace
 
 			for ( int i = 0; i < hudData.playerHealthData.health; i++ )
 			{
-				Blue.Game.Instance.GameRenderer.PrepareToDrawSprite( healthTexture, healthPointPos, hudData.healthPointScale, Color.Red );
+				Blue.Game.Instance.GameRenderer.PrepareToDrawSprite( healthTexture, healthPointPos, hudData.healthPointScale, Color.Green );
 				healthPointPos.X += (int)( healthTexture.Width * hudData.healthPointScale.X ) + hudData.xOffset;
 			}
 		}

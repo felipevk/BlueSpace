@@ -48,11 +48,15 @@ namespace BlueSpace
 
 		protected override void OnCollision2DEnter( string gameObjectId, ComponentData data, string colliderId )
 		{
+			if ( !HasComponentData<MeteorComponentData>( colliderId ) )
+				return;
+
 			ProjectileComponentData projectileData = data as ProjectileComponentData;
 
 			if ( projectileData.isHit )
 				return;
 
+			GetGameObject( gameObjectId ).Transform.Scale = Vector3.One;
 			projectileData.isHit = true;
 			projectileData.currentHitLifetime = projectileData.hitLifetime;
 			GetComponentData<SpriteComponentData>( gameObjectId ).assetName = projectileData.hitSprite;

@@ -70,6 +70,7 @@ namespace BlueSpace
 				AssetManager.AddAsset<FontAsset>( "PixeloidSans" );
 				AssetManager.AddAsset<SoundEffectAsset>( "pop" );
 				AssetManager.AddAsset<SoundEffectAsset>( "laserShoot" );
+				AssetManager.AddAsset<SoundEffectAsset>( "shotgunShoot" );
 				AssetManager.AddAsset<SoundEffectAsset>( "meteorHit" );
 				AssetManager.AddAsset<SoundEffectAsset>( "meteorDestroy" );
 			}
@@ -112,6 +113,7 @@ namespace BlueSpace
 				PlayerHealthComponentData playerHealth = CreateComponentData<PlayerHealthComponentData>( player.Id );
 				playerHealth.health = 5;
 				playerHealth.hitDuration = 3;
+				// TODO fix blink w/ overheat
 				SpriteBlinkComponentData playerBlink = CreateComponentData<SpriteBlinkComponentData>( player.Id );
 				playerBlink.originalColor = Color.White;
 				playerBlink.blinkColor = Color.Transparent;
@@ -123,7 +125,9 @@ namespace BlueSpace
 
 				GameObject gun = CreateGameObject( "Gun" );
 				player.AddChild( gun );
-				CreateComponentData<PlayerWeaponComponentData>( gun.Id ).drawDebugProjectile = false;
+				PlayerWeaponComponentData playerWeapon = CreateComponentData<PlayerWeaponComponentData>( gun.Id );
+				playerWeapon.drawDebugProjectile = false;
+				playerWeapon.playerSpriteId = player.Id;
 
 				GameObject meteorSpawner = CreateGameObject( "MeteorSpawner" );
 				MeteorSpawnerComponentData meteorSpawnerData = CreateComponentData<MeteorSpawnerComponentData>( meteorSpawner.Id );
