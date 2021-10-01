@@ -9,6 +9,7 @@ namespace BlueSpace
 	public class PlayerHealthComponentData : ComponentData
 	{
 		public int health;
+		public int maxHealth;
 		public float currentHitTime;
 		public float hitDuration;
 	}

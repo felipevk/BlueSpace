@@ -1,8 +1,6 @@
 ﻿using System;
 
-using Blue.Core;
 using Blue.ECS;
-using Microsoft.Xna.Framework;
 
 namespace BlueSpace
 {

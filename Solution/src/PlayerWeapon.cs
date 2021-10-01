@@ -13,6 +13,7 @@ namespace BlueSpace
 		Shotgun = 1,
 		GatlingGun = 2
 	}
+
 	public class PlayerWeaponComponentData : ComponentData
 	{
 		public PlayerWeaponType type = PlayerWeaponType.Laser;
@@ -96,14 +97,14 @@ namespace BlueSpace
 				projectileSpeed = 1500,
 				projectileSprite = "laserRed",
 				projectileHitSprite = "laserRedShot",
-				shootSound = "laserShoot",
+				shootSound = "shotgunShoot",
 				hitSound = "",
 				shootSoundVolume = 0.2f,
 				hitSoundVolume = 0.2f,
 				scale = new List<Vector3>()
 			};
-			shotgun.scale.Add( new Vector3( 1, 1, 1 ) );
-			shotgun.scale.Add( new Vector3( 1, 1, 1 ) );
+			shotgun.scale.Add( new Vector3( 1.5f, 1, 1 ) );
+			shotgun.scale.Add( new Vector3( 1.5f, 1, 1 ) );
 			shotgun.positionOffset = new List<Vector3>
 			{
 				new Vector3( 15, -30, 0 ),

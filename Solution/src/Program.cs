@@ -67,8 +67,12 @@ namespace BlueSpace
 				AssetManager.AddAsset<SpriteAsset>( "laserGreenShot" );
 				AssetManager.AddAsset<SpriteAsset>( "laserRed" );
 				AssetManager.AddAsset<SpriteAsset>( "laserRedShot" );
+				AssetManager.AddAsset<SpriteAsset>( "life" );
+				AssetManager.AddAsset<SpriteAsset>( "pill_green" );
+				AssetManager.AddAsset<SpriteAsset>( "powerupRed_bolt" );
+				AssetManager.AddAsset<SpriteAsset>( "powerupYellow_bolt" );
+				AssetManager.AddAsset<SpriteAsset>( "ball" );
 				AssetManager.AddAsset<FontAsset>( "PixeloidSans" );
-				AssetManager.AddAsset<SoundEffectAsset>( "pop" );
 				AssetManager.AddAsset<SoundEffectAsset>( "laserShoot" );
 				AssetManager.AddAsset<SoundEffectAsset>( "shotgunShoot" );
 				AssetManager.AddAsset<SoundEffectAsset>( "meteorHit" );
@@ -98,6 +102,9 @@ namespace BlueSpace
 				RegisterComponent<PlayerHUDComponentSystem, PlayerHUDComponentData>();
 				RegisterComponent<PlayerScoreComponentSystem, PlayerScoreComponentData>();
 				RegisterComponent<PlayerScoreHUDComponentSystem, PlayerScoreHUDComponentData>();
+				RegisterComponent<PickupSpawnerComponentSystem, PickupSpawnerComponentData>();
+				RegisterComponent<HealthPickupComponentSystem, HealthPickupComponentData>();
+				RegisterComponent<UpgradePickupComponentSystem, UpgradePickupComponentData>();
 			}
 
 			protected override void RegisterGameObjects()
@@ -112,6 +119,7 @@ namespace BlueSpace
 				CreateComponentData<PlayerScoreComponentData>( player.Id );
 				PlayerHealthComponentData playerHealth = CreateComponentData<PlayerHealthComponentData>( player.Id );
 				playerHealth.health = 5;
+				playerHealth.maxHealth = 8;
 				playerHealth.hitDuration = 3;
 				// TODO fix blink w/ overheat
 				SpriteBlinkComponentData playerBlink = CreateComponentData<SpriteBlinkComponentData>( player.Id );
@@ -123,9 +131,7 @@ namespace BlueSpace
 				playerCollider.Width = 35;
 				playerCollider.Height = 55;
 
-				GameObject gun = CreateGameObject( "Gun" );
-				player.AddChild( gun );
-				PlayerWeaponComponentData playerWeapon = CreateComponentData<PlayerWeaponComponentData>( gun.Id );
+				PlayerWeaponComponentData playerWeapon = CreateComponentData<PlayerWeaponComponentData>( player.Id );
 				playerWeapon.drawDebugProjectile = false;
 				playerWeapon.playerSpriteId = player.Id;
 
@@ -140,6 +146,16 @@ namespace BlueSpace
 				meteorSpawnerData.drawDebug = false;
 				meteorSpawnerData.playerId = player.Id;
 
+				GameObject pickupSpawner = CreateGameObject( "PickupSpawner" );
+				PickupSpawnerComponentData pickupSpawnerData = CreateComponentData<PickupSpawnerComponentData>( pickupSpawner.Id );
+				pickupSpawnerData.timeToSpawn = new Interval( 0f, 3f );
+				pickupSpawnerData.xPos = new Interval( 100f, 700f );
+				pickupSpawnerData.yPos = -20f;
+				pickupSpawnerData.timeToSpawn = new Interval( 2f, 4f );
+				pickupSpawnerData.timeToUpgrade = new float[1];
+				pickupSpawnerData.timeToUpgrade[0] = 10;
+				pickupSpawnerData.timeWithoutPickups = 3f;
+
 				GameObject hud = CreateGameObject( "HUD" );
 
 				GameObject healthHud = CreateGameObject( "PlayerHealth" );
@@ -147,9 +163,9 @@ namespace BlueSpace
 				healthHud.Transform.Position = new Vector3( 10, 750, 0 );
 				PlayerHUDComponentData healthDisplay = CreateComponentData<PlayerHUDComponentData>( healthHud.Id );
 				healthDisplay.id = player.Id;
-				healthDisplay.assetName = "player";
+				healthDisplay.assetName = "life";
 				healthDisplay.xOffset = 10.0f;
-				healthDisplay.healthPointScale = new Vector2( 0.3f , 0.3f );
+				healthDisplay.healthPointScale = new Vector2( 1f , 1f );
 
 				GameObject scoreHud = CreateGameObject( "PlayerScore" );
 				hud.AddChild( scoreHud );

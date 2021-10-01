@@ -88,11 +88,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Assets\PixeloidSans-Bold.ttf" />
+    <None Include="src\ComponentSystem.snippet" />
+    <None Include="src\ComponentData.snippet" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\HealthPickup.cs" />
     <Compile Include="src\Meteor.cs" />
     <Compile Include="src\MeteorSpawner.cs" />
+    <Compile Include="src\PickupSpawner.cs" />
     <Compile Include="src\PlayerController.cs" />
     <Compile Include="src\PlayerHealth.cs" />
     <Compile Include="src\PlayerHealthHUD.cs" />
@@ -103,6 +107,7 @@
     <Compile Include="src\Program.cs" />
     <Compile Include="src\Projectile.cs" />
     <Compile Include="src\SpriteBlink.cs" />
+    <Compile Include="src\UpgradePickup.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

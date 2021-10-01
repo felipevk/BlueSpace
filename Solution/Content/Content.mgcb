@@ -13,6 +13,18 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin ../Assets/ball.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/ball.png;ball.png
+
 #begin ../Assets/laserGreen.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -115,6 +127,18 @@
 /processorParam:TextureFormat=Color
 /build:../Assets/meteorSmall.png;meteorSmall.png
 
+#begin ../Assets/pill_green.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/pill_green.png;pill_green.png
+
 #begin ../Assets/player.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -150,6 +174,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:../Assets/playerRight.png;playerRight.png
+
+#begin ../Assets/powerupRed_bolt.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/powerupRed_bolt.png;powerupRed_bolt.png
+
+#begin ../Assets/powerupYellow_bolt.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:../Assets/powerupYellow_bolt.png;powerupYellow_bolt.png
 
 #begin ../Assets/shotgunShoot.wav
 /importer:WavImporter
