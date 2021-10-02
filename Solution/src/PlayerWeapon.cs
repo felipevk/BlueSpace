@@ -203,6 +203,14 @@ namespace BlueSpace
 					};
 					playerWeaponData.playerSprite.color = playerColor;
 				}
+				else
+				{
+					if ( playerWeaponData.isOverheat )
+					{
+						playerWeaponData.isOverheat = false;
+						playerWeaponData.playerSprite.color = Color.White;
+					}
+				}
 				bool isInputValid = playerWeaponData.isAutomatic ? 
 					Input.IsButtonDown( playerWeaponData.input, playerWeaponData.playerIndex ) : 
 					Input.IsButtonPressed( playerWeaponData.input, playerWeaponData.playerIndex );

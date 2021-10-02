@@ -62,9 +62,10 @@ namespace BlueSpace
 				X = (int)GetGameObject( gameObjectId ).GetGlobalPosition().X,
 				Y = (int)GetGameObject( gameObjectId ).GetGlobalPosition().Y
 			};
+			Color borderColor = overheatData.weaponData.isOverheat ? Color.Red : Color.Green;
 			Blue.Game.Instance.GameRenderer.PrepareToDrawRectangle(
 				borderRectangle,
-				Color.Red,
+				borderColor,
 				false );
 
 			Rectangle fillRectangle = borderRectangle;
