@@ -32,7 +32,6 @@ namespace BlueSpace
 
 			if ( Vector3.Distance( position, destroyData.center ) > destroyData.maxDistance )
 			{
-				Blue.Log.Message( GetGameObject( gameObjectId ).Name + " destroyed " );
 				DestroyGameObject( gameObjectId );
 			}
 		}

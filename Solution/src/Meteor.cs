@@ -13,8 +13,10 @@ namespace BlueSpace
 	}
 	public enum MeteorSize
 	{
+		Big,
+		Medium,
 		Small,
-		Big
+		Tiny
 	}
 
 	[RequiresComponentData( typeof( SpriteComponentData ) )]

@@ -123,10 +123,8 @@
     <Content Include="Assets\laserRedShot.png" />
     <Content Include="Assets\laserShoot.wav" />
     <Content Include="Assets\life.png" />
-    <Content Include="Assets\meteorBig.png" />
     <Content Include="Assets\meteorDestroy.wav" />
     <Content Include="Assets\meteorHit.wav" />
-    <Content Include="Assets\meteorSmall.png" />
     <Content Include="Assets\player.png" />
     <Content Include="Assets\playerLeft.png" />
     <Content Include="Assets\playerRight.png" />

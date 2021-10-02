@@ -42,6 +42,9 @@ namespace BlueSpace
 			if ( playerHealthData.currentHitTime <= 0f && HasComponentData<MeteorComponentData>( colliderId ) )
 			{
 				MeteorComponentData meteorData = GetComponentData<MeteorComponentData>( colliderId );
+				if ( meteorData.damage <= 0 )
+					return;
+
 				playerHealthData.health -= meteorData.damage;
 
 				if ( playerHealthData.health > 0 )

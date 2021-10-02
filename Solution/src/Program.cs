@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Collections.Generic;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 using Blue.Core;
@@ -61,8 +63,6 @@ namespace BlueSpace
 				AssetManager.AddAsset<SpriteAsset>( "player" );
 				AssetManager.AddAsset<SpriteAsset>( "playerLeft" );
 				AssetManager.AddAsset<SpriteAsset>( "playerRight" );
-				AssetManager.AddAsset<SpriteAsset>( "meteorBig" );
-				AssetManager.AddAsset<SpriteAsset>( "meteorSmall" );
 				AssetManager.AddAsset<SpriteAsset>( "laserGreen" );
 				AssetManager.AddAsset<SpriteAsset>( "laserGreenShot" );
 				AssetManager.AddAsset<SpriteAsset>( "laserRed" );
@@ -71,7 +71,24 @@ namespace BlueSpace
 				AssetManager.AddAsset<SpriteAsset>( "pill_green" );
 				AssetManager.AddAsset<SpriteAsset>( "powerupRed_bolt" );
 				AssetManager.AddAsset<SpriteAsset>( "powerupYellow_bolt" );
-				AssetManager.AddAsset<SpriteAsset>( "ball" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorBrown_big1" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorBrown_big3" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorBrown_big4" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorBrown_med1" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorBrown_med3" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorBrown_small1" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorBrown_small2" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorBrown_tiny1" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorBrown_tiny2" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorGrey_big1" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorGrey_big3" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorGrey_big4" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorGrey_med1" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorGrey_med2" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorGrey_small1" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorGrey_small2" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorGrey_tiny1" );
+				AssetManager.AddAsset<SpriteAsset>( "meteorGrey_tiny2" );
 				AssetManager.AddAsset<FontAsset>( "PixeloidSans" );
 				AssetManager.AddAsset<SoundEffectAsset>( "laserShoot" );
 				AssetManager.AddAsset<SoundEffectAsset>( "shotgunShoot" );
@@ -146,6 +163,21 @@ namespace BlueSpace
 				meteorSpawnerData.senoidArc = new Interval( 50f, 300f );
 				meteorSpawnerData.drawDebug = false;
 				meteorSpawnerData.playerId = player.Id;
+				meteorSpawnerData.meteorAssetNames = new Dictionary<MeteorSize, System.Collections.Generic.List<string>>
+					{
+						[MeteorSize.Big] = new List<string> {
+						"meteorBrown_big1", "meteorBrown_big3", "meteorBrown_big4", "meteorGrey_big1", "meteorGrey_big3", "meteorGrey_big4"
+					},
+						[MeteorSize.Medium] = new List<string> {
+						"meteorBrown_med1", "meteorBrown_med3", "meteorGrey_med1", "meteorGrey_med2"
+					},
+						[MeteorSize.Small] = new List<string> {
+						"meteorBrown_small1", "meteorBrown_small2", "meteorGrey_small1", "meteorGrey_small2"
+					},
+						[MeteorSize.Tiny] = new List<string> {
+						"meteorBrown_tiny1", "meteorBrown_tiny2", "meteorGrey_tiny1", "meteorGrey_tiny2"
+					}
+				};
 
 				GameObject pickupSpawner = CreateGameObject( "PickupSpawner" );
 				PickupSpawnerComponentData pickupSpawnerData = CreateComponentData<PickupSpawnerComponentData>( pickupSpawner.Id );
@@ -154,8 +186,8 @@ namespace BlueSpace
 				pickupSpawnerData.yPos = -20f;
 				pickupSpawnerData.timeToSpawn = new Interval( 2f, 4f );
 				pickupSpawnerData.timeToUpgrade = new float[1];
-				pickupSpawnerData.timeToUpgrade[0] = 10;
-				pickupSpawnerData.timeWithoutPickups = 3f;
+				pickupSpawnerData.timeToUpgrade[0] = 30;
+				pickupSpawnerData.timeWithoutPickups = 10f;
 
 				GameObject hud = CreateGameObject( "HUD" );
 

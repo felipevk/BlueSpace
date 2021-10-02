@@ -123,7 +123,7 @@ namespace BlueSpace
 			WeaponData gatlingGun = new WeaponData
 			{
 				isAutomatic = true,
-				overheatAddPercentage = 0.1f,
+				overheatAddPercentage = 0.05f,
 				damage = 4,
 				projectiles = 4,
 				rechargeTime = 0.1f,
