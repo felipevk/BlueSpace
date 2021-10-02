@@ -105,6 +105,7 @@ namespace BlueSpace
 				RegisterComponent<PickupSpawnerComponentSystem, PickupSpawnerComponentData>();
 				RegisterComponent<HealthPickupComponentSystem, HealthPickupComponentData>();
 				RegisterComponent<UpgradePickupComponentSystem, UpgradePickupComponentData>();
+				RegisterComponent<DestroyWhenFarComponentSystem, DestroyWhenFarComponentData>();
 			}
 
 			protected override void RegisterGameObjects()

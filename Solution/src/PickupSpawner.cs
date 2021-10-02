@@ -51,6 +51,7 @@ namespace BlueSpace
 					BoxCollision2DComponentData healthCollider = GetComponentData<BoxCollision2DComponentData>( healthPickup.Id );
 					healthCollider.Width = 20;
 					healthCollider.Height = 20;
+					CreateComponentData<DestroyWhenFarComponentData>( healthPickup.Id );
 				}
 				else
 				{
@@ -64,6 +65,7 @@ namespace BlueSpace
 					BoxCollision2DComponentData upgradeCollider = GetComponentData<BoxCollision2DComponentData>( upgradePickup.Id );
 					upgradeCollider.Width = 20;
 					upgradeCollider.Height = 20;
+					CreateComponentData<DestroyWhenFarComponentData>( upgradePickup.Id );
 
 					switch ( weaponType )
 					{

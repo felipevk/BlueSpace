@@ -44,6 +44,7 @@ namespace BlueSpace
 			Random rand = new Random();
 			GameObject meteor = CreateGameObject( "Meteor" );
 			meteor.Transform.Position = new Vector3( spawnerData.xPos.Random(), spawnerData.yPos, 0 );
+			CreateComponentData<DestroyWhenFarComponentData>( meteor.Id );
 			SpriteComponentData meteorSprite = CreateComponentData<SpriteComponentData>( meteor.Id );
 			MeteorComponentData meteorData = CreateComponentData<MeteorComponentData>( meteor.Id );
 			meteorData.path = (MeteorPath) rand.Next(0, Enum.GetNames( typeof( MeteorPath ) ).Length);

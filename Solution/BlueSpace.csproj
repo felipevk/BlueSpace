@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Solution</RootNamespace>
+    <RootNamespace>BlueSpace</RootNamespace>
     <AssemblyName>Solution</AssemblyName>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.20348.0</TargetPlatformVersion>
@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\DestroyWhenFar.cs" />
     <Compile Include="src\HealthPickup.cs" />
     <Compile Include="src\Meteor.cs" />
     <Compile Include="src\MeteorSpawner.cs" />

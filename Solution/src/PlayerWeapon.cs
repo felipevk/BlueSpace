@@ -253,6 +253,8 @@ namespace BlueSpace
 				projectileInstanceData.speed = weaponData.projectileSpeed;
 				projectileInstanceData.hitSound = weaponData.hitSound;
 				projectileInstanceData.hitSprite = weaponData.projectileHitSprite;
+
+				CreateComponentData<DestroyWhenFarComponentData>( projectile.Id );
 			}
 			playerWeaponData.currentRechargeTime = weaponData.rechargeTime;
 			SoundComponentSystem.PlayOnce( weaponData.shootSound, weaponData.shootSoundVolume );
