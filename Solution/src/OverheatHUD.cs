@@ -12,8 +12,10 @@ namespace BlueSpace
 		public int Width;
 		public int Height;
 		public String playerWeaponId;
+		public String hudTextId;
 		public PlayerWeaponComponentData weaponData;
 		public SoundComponentData soundData;
+		public TextComponentData hudTextData;
 	}
 
 	public class OverheatHUDComponentSystem : ComponentSystem
@@ -23,6 +25,8 @@ namespace BlueSpace
 			OverheatHUDComponentData overheatData = data as OverheatHUDComponentData;
 			overheatData.weaponData = GetComponentData<PlayerWeaponComponentData>( overheatData.playerWeaponId );
 			overheatData.soundData = GetComponentData<SoundComponentData>( gameObjectId );
+			overheatData.hudTextData = GetComponentData<TextComponentData>( overheatData.hudTextId );
+			overheatData.hudTextData.enabled = false;
 		}
 
 		protected override void Update( string gameObjectId, ComponentData data )
@@ -32,12 +36,20 @@ namespace BlueSpace
 			if ( overheatData.weaponData.isOverheat )
 			{
 				if ( !overheatData.soundData.isPlaying )
+				{
 					SoundComponentSystem.Play( gameObjectId, overheatData.soundData );
+					overheatData.hudTextData.enabled = true;
+					GetComponentData<TextBlinkComponentData>( overheatData.hudTextId ).enabled = true;
+				}
 			}
 			else
 			{
 				if ( overheatData.soundData.isPlaying )
+				{
 					SoundComponentSystem.Stop( gameObjectId, overheatData.soundData );
+					overheatData.hudTextData.enabled = false;
+					GetComponentData<TextBlinkComponentData>( overheatData.hudTextId ).enabled = false;
+				}
 			}
 		}
 

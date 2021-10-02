@@ -122,6 +122,7 @@ namespace BlueSpace
 				RegisterComponent<MeteorSpawnerComponentSystem, MeteorSpawnerComponentData>();
 				RegisterComponent<PlayerHealthComponentSystem, PlayerHealthComponentData>();
 				RegisterComponent<SpriteBlinkComponentSystem, SpriteBlinkComponentData>();
+				RegisterComponent<TextBlinkComponentSystem, TextBlinkComponentData>();
 				RegisterComponent<PlayerHUDComponentSystem, PlayerHUDComponentData>();
 				RegisterComponent<PlayerScoreComponentSystem, PlayerScoreComponentData>();
 				RegisterComponent<PlayerScoreHUDComponentSystem, PlayerScoreHUDComponentData>();
@@ -157,10 +158,7 @@ namespace BlueSpace
 				playerHealth.health = 5;
 				playerHealth.maxHealth = 8;
 				playerHealth.hitDuration = 3;
-				// TODO fix blink w/ overheat
 				SpriteBlinkComponentData playerBlink = CreateComponentData<SpriteBlinkComponentData>( player.Id );
-				playerBlink.originalColor = Color.White;
-				playerBlink.blinkColor = Color.Transparent;
 				playerBlink.blinkDuration = 0.1f;
 				BoxCollision2DComponentData playerCollider = GetComponentData<BoxCollision2DComponentData>( player.Id );
 				playerCollider.drawDebug = false;
@@ -221,7 +219,7 @@ namespace BlueSpace
 
 				GameObject scoreHud = CreateGameObject( "PlayerScore" );
 				hud.AddChild( scoreHud );
-				scoreHud.Transform.Position = new Vector3( 600, 740, 0 );
+				scoreHud.Transform.Position = new Vector3( 490, 715, 0 );
 				PlayerScoreHUDComponentData scoreDisplay = CreateComponentData<PlayerScoreHUDComponentData>( scoreHud.Id );
 				scoreDisplay.id = player.Id;
 				TextComponentData scoreHudText = GetComponentData<TextComponentData>( scoreHud.Id );
@@ -238,6 +236,20 @@ namespace BlueSpace
 				SoundComponentData overheatSound = CreateComponentData<SoundComponentData>( overheathHud.Id );
 				overheatSound.assetName = "soft-alert";
 				overheatSound.loop = true;
+
+				GameObject overheathHudText = CreateGameObject( "OverheatText" );
+				overheathHud.AddChild( overheathHudText );
+				overheathHudText.Transform.Position = new Vector3( 255, 6, 0 );
+				TextComponentData overheathHudTextData = CreateComponentData<TextComponentData>( overheathHudText.Id );
+				overheathHudTextData.assetName = "PixeloidSans";
+				overheathHudTextData.scale = 1.0f;
+				overheathHudTextData.color = Color.Red;
+				overheathHudTextData.text = "OVERHEAT";
+				TextBlinkComponentData overheathHudTextBlink = CreateComponentData<TextBlinkComponentData>( overheathHudText.Id );
+				overheathHudTextBlink.blinkDuration = 0.1f;
+				overheathHudTextBlink.enabled = false;
+
+				overheatDisplay.hudTextId = overheathHudText.Id;
 			}
 		};
 	} 

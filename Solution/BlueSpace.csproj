@@ -110,6 +110,7 @@
     <Compile Include="src\Projectile.cs" />
     <Compile Include="src\ScrollingBackground.cs" />
     <Compile Include="src\SpriteBlink.cs" />
+    <Compile Include="src\TextBlink.cs" />
     <Compile Include="src\UpgradePickup.cs" />
   </ItemGroup>
   <ItemGroup>

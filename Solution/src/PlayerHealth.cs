@@ -1,4 +1,6 @@
-﻿using Blue.Core;
+﻿using System;
+
+using Blue.Core;
 using Blue.ECS;
 
 namespace BlueSpace
@@ -11,6 +13,7 @@ namespace BlueSpace
 		public int maxHealth;
 		public float currentHitTime;
 		public float hitDuration;
+		public Action onDeath;
 	}
 
 	public class PlayerHealthComponentSystem : ComponentSystem
@@ -57,7 +60,7 @@ namespace BlueSpace
 				else
 				{
 					// TODO destroy sound
-					DestroyGameObject( gameObjectId );
+					playerHealthData.onDeath?.Invoke();
 				}
 			}
 		}
