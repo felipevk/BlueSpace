@@ -93,7 +93,7 @@ namespace BlueSpace
 				overheatAddPercentage = 0,
 				damage = 8,
 				projectiles = 2,
-				rechargeTime = 0.3f,
+				rechargeTime = 0.05f,
 				projectileSpeed = 1500,
 				projectileSprite = "laserRed",
 				projectileHitSprite = "laserRedShot",

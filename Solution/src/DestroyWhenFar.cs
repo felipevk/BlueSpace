@@ -1,5 +1,4 @@
-﻿using Blue.Core;
-using Blue.ECS;
+﻿using Blue.ECS;
 using Microsoft.Xna.Framework;
 
 namespace BlueSpace

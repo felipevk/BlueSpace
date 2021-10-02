@@ -397,6 +397,12 @@
 /processorParam:Quality=Best
 /build:../Assets/shotgunShoot.wav;shotgunShoot.wav
 
+#begin ../Assets/soft-alert.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:../Assets/soft-alert.wav;soft-alert.wav
+
 #begin ../Assets/star_4.png
 /importer:TextureImporter
 /processor:TextureProcessor

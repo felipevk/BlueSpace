@@ -99,6 +99,7 @@ namespace BlueSpace
 				AssetManager.AddAsset<SoundEffectAsset>( "shotgunShoot" );
 				AssetManager.AddAsset<SoundEffectAsset>( "meteorHit" );
 				AssetManager.AddAsset<SoundEffectAsset>( "meteorDestroy" );
+				AssetManager.AddAsset<SoundEffectAsset>( "soft-alert" );
 			}
 		}
 		public class MainScene : Scene
@@ -129,6 +130,7 @@ namespace BlueSpace
 				RegisterComponent<UpgradePickupComponentSystem, UpgradePickupComponentData>();
 				RegisterComponent<DestroyWhenFarComponentSystem, DestroyWhenFarComponentData>();
 				RegisterComponent<ScrollingBackgroundComponentSystem, ScrollingBackgroundComponentData>();
+				RegisterComponent<OverheatHUDComponentSystem, OverheatHUDComponentData>();
 			}
 
 			protected override void RegisterGameObjects()
@@ -209,7 +211,7 @@ namespace BlueSpace
 
 				GameObject healthHud = CreateGameObject( "PlayerHealth" );
 				hud.AddChild( healthHud );
-				healthHud.Transform.Position = new Vector3( 10, 750, 0 );
+				healthHud.Transform.Position = new Vector3( 10, 720, 0 );
 				PlayerHUDComponentData healthDisplay = CreateComponentData<PlayerHUDComponentData>( healthHud.Id );
 				healthDisplay.id = player.Id;
 				healthDisplay.assetName = "life";
@@ -225,6 +227,17 @@ namespace BlueSpace
 				TextComponentData scoreHudText = GetComponentData<TextComponentData>( scoreHud.Id );
 				scoreHudText.assetName = "PixeloidSans";
 				scoreHudText.scale = 2.0f;
+
+				GameObject overheathHud = CreateGameObject( "Overheat" );
+				hud.AddChild( overheathHud );
+				overheathHud.Transform.Position = new Vector3( 10, 760, 0 );
+				OverheatHUDComponentData overheatDisplay = CreateComponentData<OverheatHUDComponentData>( overheathHud.Id );
+				overheatDisplay.playerWeaponId = player.Id;
+				overheatDisplay.Width = 250;
+				overheatDisplay.Height = 30;
+				SoundComponentData overheatSound = CreateComponentData<SoundComponentData>( overheathHud.Id );
+				overheatSound.assetName = "soft-alert";
+				overheatSound.loop = true;
 			}
 		};
 	} 

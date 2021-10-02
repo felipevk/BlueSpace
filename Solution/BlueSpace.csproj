@@ -97,6 +97,7 @@
     <Compile Include="src\HealthPickup.cs" />
     <Compile Include="src\Meteor.cs" />
     <Compile Include="src\MeteorSpawner.cs" />
+    <Compile Include="src\OverheatHUD.cs" />
     <Compile Include="src\PickupSpawner.cs" />
     <Compile Include="src\PlayerController.cs" />
     <Compile Include="src\PlayerHealth.cs" />
