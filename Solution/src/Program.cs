@@ -145,46 +145,6 @@ namespace BlueSpace
 				scrollingData.initialYPos = -800;
 				scrollingData.zOrder = -1;
 
-				//GameObject stars = CreateGameObject( "Stars" );
-				//stars.Transform.Position = new Vector3( 400, -40, 0 );
-				//ParticleComponentData starsParticles = CreateComponentData<ParticleComponentData>( stars.Id );
-				//starsParticles.emissorShape = ParticleSystemEmissorShape.Box;
-				//starsParticles.squareShapeWidth = 1000;
-				//starsParticles.squareShapeHeight = 20;
-				//starsParticles.lifetimeSeconds = 10f;
-				//starsParticles.timeToEmit = new Interval( 1f, 2f );
-				//starsParticles.lifetimeVariation = new Interval( 0f, 10f );
-				//starsParticles.spriteAssetName = "star3";
-				//starsParticles.directionVariationX = new Interval( -0.1f, 0.1f );
-				//starsParticles.directionVariationY = new Interval( 1f, 1f );
-				//starsParticles.particlesToEmitPerBurst = new Interval( 1f, 10f );
-				//starsParticles.preloadParticles = 10;
-				//starsParticles.speed = new Interval( 70, 80 );
-				//starsParticles.colorRVariation = new Interval( 0, 255 );
-				//starsParticles.colorGVariation = new Interval( 0, 255 );
-				//starsParticles.colorBVariation = new Interval( 0, 255 );
-				//starsParticles.drawDebug = true;
-
-				//GameObject stars2 = CreateGameObject( "Stars2" );
-				//stars2.Transform.Position = new Vector3( 400, -40, 0 );
-				//ParticleComponentData starsParticles2 = CreateComponentData<ParticleComponentData>( stars2.Id );
-				//starsParticles2.emissorShape = ParticleSystemEmissorShape.Box;
-				//starsParticles2.squareShapeWidth = 1000;
-				//starsParticles2.squareShapeHeight = 20;
-				//starsParticles2.lifetimeSeconds = 100f;
-				//starsParticles2.timeToEmit = new Interval( 1f, 5f );
-				//starsParticles2.lifetimeVariation = new Interval( 0f, 10f );
-				//starsParticles2.spriteAssetName = "star_4";
-				//starsParticles2.directionVariationX = new Interval( -0.1f, 0.1f );
-				//starsParticles2.directionVariationY = new Interval( 1f, 1f );
-				//starsParticles2.particlesToEmitPerBurst = new Interval( 10f, 30f );
-				//starsParticles2.preloadParticles = 10;
-				//starsParticles2.speed = new Interval( 30, 35 );
-				//starsParticles2.colorRVariation = new Interval( 0, 255 );
-				//starsParticles2.colorGVariation = new Interval( 0, 255 );
-				//starsParticles2.colorBVariation = new Interval( 0, 255 );
-				//starsParticles2.drawDebug = true;
-
 				GameObject player = CreateGameObject( "Player" );
 				player.Transform.Position = new Vector3( 400, 600, 0 );
 				CreateComponentData<PositionConstrainComponentData>( player.Id ).useWindowBounds = true;

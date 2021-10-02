@@ -18,6 +18,7 @@ namespace BlueSpace
 		public float backgroundHeight;
 		public String assetName;
 		public int zOrder = 0;
+		public int currentLower = 0;
 	}
 
 	public class ScrollingBackgroundComponentSystem : ComponentSystem
@@ -35,6 +36,7 @@ namespace BlueSpace
 				float yPos = backgroundData.initialYPos + ( backgroundData.backgroundHeight * i );
 				backgroundData.positions[i] = new Vector2( initialXPos, yPos );
 			}
+			backgroundData.currentLower = backgroundData.entries - 1;
 		}
 
 		protected override void Update( string gameObjectId, ComponentData data )
@@ -44,13 +46,18 @@ namespace BlueSpace
 			for ( int i = 0; i < backgroundData.positions.Length; i++ )
 			{
 				backgroundData.positions[i].Y += Time.DeltaTime * backgroundData.speed;
+			}
 
-				if ( backgroundData.positions[i].Y > backgroundData.threshold )
+			if ( backgroundData.positions[backgroundData.currentLower].Y > backgroundData.threshold )
+			{
+				int nextIndex = ( backgroundData.currentLower + 1 ) % backgroundData.positions.Length;
+				backgroundData.positions[backgroundData.currentLower].Y = backgroundData.positions[nextIndex].Y - backgroundData.backgroundHeight;
+				backgroundData.currentLower --;
+				if ( backgroundData.currentLower < 0 )
 				{
-					int nextIndex = ( i + 1 ) % backgroundData.positions.Length;
-
-					backgroundData.positions[i].Y = backgroundData.positions[nextIndex].Y - backgroundData.backgroundHeight;
+					backgroundData.currentLower = backgroundData.positions.Length - 1;
 				}
+				Blue.Log.Message("Current lower: "+ backgroundData.currentLower );
 			}
 		}
 
