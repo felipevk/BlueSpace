@@ -13,6 +13,7 @@ namespace BlueSpace
 		public String id;
 		public PlayerHealthComponentData playerHealthData;
 		public float xOffset = 10f;
+		public int zOrder = 0;
 		public Vector2 healthPointScale;
 	}
 
@@ -37,7 +38,7 @@ namespace BlueSpace
 
 			for ( int i = 0; i < hudData.playerHealthData.health; i++ )
 			{
-				Blue.Game.Instance.GameRenderer.PrepareToDrawSprite( healthTexture, healthPointPos, hudData.healthPointScale, Color.Green );
+				Blue.Game.Instance.GameRenderer.PrepareToDrawSprite( healthTexture, healthPointPos, hudData.healthPointScale, hudData.zOrder, Color.Green );
 				healthPointPos.X += (int)( healthTexture.Width * hudData.healthPointScale.X ) + hudData.xOffset;
 			}
 		}

@@ -107,6 +107,7 @@
     <Compile Include="src\PositionConstrain.cs" />
     <Compile Include="src\Program.cs" />
     <Compile Include="src\Projectile.cs" />
+    <Compile Include="src\ScrollingBackground.cs" />
     <Compile Include="src\SpriteBlink.cs" />
     <Compile Include="src\UpgradePickup.cs" />
   </ItemGroup>
