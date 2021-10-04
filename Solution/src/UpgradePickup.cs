@@ -34,8 +34,7 @@ namespace BlueSpace
 			{
 				UpgradePickupComponentData upgradePickup = data as UpgradePickupComponentData;
 				PlayerWeaponComponentData weaponData = GetComponentData<PlayerWeaponComponentData>( colliderId );
-				weaponData.currentOverheat = 0f;
-				GetComponentSystem<PlayerWeaponComponentSystem>().SwitchWeapon( colliderId, upgradePickup.upgradeType );
+				PlayerWeaponComponentSystem.SwitchWeapon( weaponData, upgradePickup.upgradeType );
 
 				// TODO sound effect
 				DestroyGameObject( gameObjectId );

@@ -10,6 +10,7 @@ namespace BlueSpace
 	public class PlayerHealthComponentData : ComponentData
 	{
 		public int health;
+		public int initialHealth;
 		public int maxHealth;
 		public float currentHitTime;
 		public float hitDuration;
@@ -60,9 +61,16 @@ namespace BlueSpace
 				else
 				{
 					// TODO destroy sound
+					GetComponentData<SpriteComponentData>( gameObjectId ).enabled = false;
 					playerHealthData.onDeath?.Invoke();
 				}
 			}
+		}
+		public void Reset( String gameObjectId )
+		{
+			PlayerHealthComponentData playerHealth = GetComponentData<PlayerHealthComponentData>( gameObjectId );
+			playerHealth.health = playerHealth.initialHealth;
+			GetComponentData<SpriteComponentData>( gameObjectId ).enabled = true;
 		}
 	}
 }

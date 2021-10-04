@@ -16,7 +16,8 @@ namespace BlueSpace
 
 	public class PlayerWeaponComponentData : ComponentData
 	{
-		public PlayerWeaponType type = PlayerWeaponType.Laser;
+		public PlayerWeaponType type;
+		public PlayerWeaponType initialType = PlayerWeaponType.Laser;
 		public float currentRechargeTime = 0;
 		public float overheatDuration = 5;
 		public float currentOverheat = 0;
@@ -230,13 +231,18 @@ namespace BlueSpace
 
 		}
 
-		public void SwitchWeapon( String gameObjectId, PlayerWeaponType weaponType )
+		public static void SwitchWeapon( PlayerWeaponComponentData playerWeapon, PlayerWeaponType weaponType )
 		{
-			PlayerWeaponComponentData playerWeapon = GetComponentData<PlayerWeaponComponentData>( gameObjectId );
 			WeaponData weaponData = weaponDataByType[(int)weaponType];
 
 			playerWeapon.type = weaponType;
 			playerWeapon.isAutomatic = weaponData.isAutomatic;
+			playerWeapon.currentOverheat = 0;
+		}
+
+		public static void Reset( PlayerWeaponComponentData playerWeapon )
+		{
+			SwitchWeapon( playerWeapon, playerWeapon.initialType );
 		}
 
 		private void Shoot( String gameObjectId, Vector3 gunPos, PlayerWeaponComponentData playerWeaponData )

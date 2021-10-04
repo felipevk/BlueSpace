@@ -83,5 +83,12 @@ namespace BlueSpace
 				pickupSpawnerData.totalTime > pickupSpawnerData.timeToUpgrade[pickupSpawnerData.currentUpgrade] )
 				pickupSpawnerData.currentUpgrade++;
 		}
+
+		public static void Reset( PickupSpawnerComponentData spawnerData )
+		{
+			spawnerData.currentUpgrade = 0;
+			spawnerData.currentTimeToSpawn = 0;
+			spawnerData.totalTime = 0;
+		}
 	}
 }

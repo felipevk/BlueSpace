@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\DestroyWhenFar.cs" />
+    <Compile Include="src\GameLogic.cs" />
     <Compile Include="src\HealthPickup.cs" />
     <Compile Include="src\Meteor.cs" />
     <Compile Include="src\MeteorSpawner.cs" />

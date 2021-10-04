@@ -132,6 +132,7 @@ namespace BlueSpace
 				RegisterComponent<DestroyWhenFarComponentSystem, DestroyWhenFarComponentData>();
 				RegisterComponent<ScrollingBackgroundComponentSystem, ScrollingBackgroundComponentData>();
 				RegisterComponent<OverheatHUDComponentSystem, OverheatHUDComponentData>();
+				RegisterComponent<GameLogicComponentSystem, GameLogicComponentData>();
 			}
 
 			protected override void RegisterGameObjects()
@@ -149,15 +150,15 @@ namespace BlueSpace
 				scrollingData.zOrder = -1;
 
 				GameObject player = CreateGameObject( "Player" );
-				player.Transform.Position = new Vector3( 400, 600, 0 );
 				CreateComponentData<PositionConstrainComponentData>( player.Id ).useWindowBounds = true;
 				CreateComponentData<SpriteComponentData>( player.Id ).assetName = "player";
-				CreateComponentData<PlayerControllerComponentData>( player.Id );
+				CreateComponentData<PlayerControllerComponentData>( player.Id ).initialPos = new Vector3( 400, 600, 0 );
 				CreateComponentData<PlayerScoreComponentData>( player.Id );
 				PlayerHealthComponentData playerHealth = CreateComponentData<PlayerHealthComponentData>( player.Id );
 				playerHealth.health = 5;
+				playerHealth.initialHealth = 5;
 				playerHealth.maxHealth = 8;
-				playerHealth.hitDuration = 3;
+				playerHealth.hitDuration = 1.5f;
 				SpriteBlinkComponentData playerBlink = CreateComponentData<SpriteBlinkComponentData>( player.Id );
 				playerBlink.blinkDuration = 0.1f;
 				BoxCollision2DComponentData playerCollider = GetComponentData<BoxCollision2DComponentData>( player.Id );
@@ -168,6 +169,7 @@ namespace BlueSpace
 				PlayerWeaponComponentData playerWeapon = CreateComponentData<PlayerWeaponComponentData>( player.Id );
 				playerWeapon.drawDebugProjectile = false;
 				playerWeapon.playerSpriteId = player.Id;
+				playerWeapon.initialType = PlayerWeaponType.Laser;
 
 				GameObject meteorSpawner = CreateGameObject( "MeteorSpawner" );
 				MeteorSpawnerComponentData meteorSpawnerData = CreateComponentData<MeteorSpawnerComponentData>( meteorSpawner.Id );
@@ -219,7 +221,7 @@ namespace BlueSpace
 
 				GameObject scoreHud = CreateGameObject( "PlayerScore" );
 				hud.AddChild( scoreHud );
-				scoreHud.Transform.Position = new Vector3( 490, 715, 0 );
+				scoreHud.Transform.Position = new Vector3( 650, 740, 0 );
 				PlayerScoreHUDComponentData scoreDisplay = CreateComponentData<PlayerScoreHUDComponentData>( scoreHud.Id );
 				scoreDisplay.id = player.Id;
 				TextComponentData scoreHudText = GetComponentData<TextComponentData>( scoreHud.Id );
@@ -250,6 +252,66 @@ namespace BlueSpace
 				overheathHudTextBlink.enabled = false;
 
 				overheatDisplay.hudTextId = overheathHudText.Id;
+
+				GameObject gameTitle = CreateGameObject( "GameTitle" );
+				hud.AddChild( gameTitle );
+				gameTitle.Transform.Position = new Vector3( 300, 250, 0 );
+				TextComponentData gameTitleText = CreateComponentData<TextComponentData>( gameTitle.Id );
+				gameTitleText.assetName = "PixeloidSans";
+				gameTitleText.scale = 2.5f;
+				gameTitleText.text = "Blue\n   Space";
+
+				GameObject gameSubtitle = CreateGameObject( "GameSubtitle" );
+				hud.AddChild( gameSubtitle );
+				gameSubtitle.Transform.Position = new Vector3( 330, 400, 0 );
+				TextComponentData gameSubtitleText = CreateComponentData<TextComponentData>( gameSubtitle.Id );
+				gameSubtitleText.assetName = "PixeloidSans";
+				gameSubtitleText.scale = 1.0f;
+				gameSubtitleText.text = "Shoot to start";
+
+				GameObject gameObjective = CreateGameObject( "GameObjective" );
+				hud.AddChild( gameObjective );
+				gameObjective.Transform.Position = new Vector3( 330, 300, 0 );
+				TextComponentData gameObjectiveText = CreateComponentData<TextComponentData>( gameObjective.Id );
+				gameObjectiveText.assetName = "PixeloidSans";
+				gameObjectiveText.scale = 1.0f;
+
+				GameObject gameOverTitle = CreateGameObject( "GameOverTitle" );
+				hud.AddChild( gameOverTitle );
+				gameOverTitle.Transform.Position = new Vector3( 330, 300, 0 );
+				TextComponentData gameOverTitleText = CreateComponentData<TextComponentData>( gameOverTitle.Id );
+				gameOverTitleText.assetName = "PixeloidSans";
+				gameOverTitleText.scale = 2.0f;
+
+				GameObject gameOverSubtitle = CreateGameObject( "GameOverSubtitle" );
+				hud.AddChild( gameOverSubtitle );
+				gameOverSubtitle.Transform.Position = new Vector3( 330, 350, 0 );
+				TextComponentData gameOverSubtitleText = CreateComponentData<TextComponentData>( gameOverSubtitle.Id );
+				gameOverSubtitleText.assetName = "PixeloidSans";
+				gameOverSubtitleText.scale = 1.0f;
+				gameOverSubtitleText.text = "Shoot to restart";
+
+				GameObject gameManager = CreateGameObject( "GameManager" );
+				GameLogicComponentData gameLogicData = CreateComponentData<GameLogicComponentData>( gameManager.Id );
+				gameLogicData.playerId = player.Id; 
+				gameLogicData.playerController = GetComponentData<PlayerControllerComponentData>( player.Id ); 
+				gameLogicData.playerHealth = GetComponentData<PlayerHealthComponentData>( player.Id ); 
+				gameLogicData.playerScore = GetComponentData<PlayerScoreComponentData>( player.Id ); 
+				gameLogicData.playerWeapon = GetComponentData<PlayerWeaponComponentData>( player.Id ); 
+				gameLogicData.pickupSpawner = GetComponentData<PickupSpawnerComponentData>( pickupSpawner.Id ); 
+				gameLogicData.meteorSpawner = GetComponentData<MeteorSpawnerComponentData>( meteorSpawner.Id ); 
+
+				gameLogicData.startMenuTitle = gameTitleText;
+				gameLogicData.startMenuSubTitle = gameSubtitleText;
+				gameLogicData.gameObjective = gameObjectiveText;
+				gameLogicData.gameOverTitle = gameOverTitleText;
+				gameLogicData.gameOverSubTitle = gameOverSubtitleText;
+
+				gameLogicData.scoreToWin = 5000;
+				gameLogicData.timeToHideObjective = 5;
+				gameLogicData.timeToShowGameOverSubtitle = 1;
+
+				gameObjectiveText.text = "Score " + gameLogicData.scoreToWin + " to win";
 			}
 		};
 	} 

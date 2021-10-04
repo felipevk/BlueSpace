@@ -9,6 +9,7 @@ namespace BlueSpace
 	[RequiresComponentData(typeof(SpriteComponentData))]
 	public class PlayerControllerComponentData : ComponentData
 	{
+		public Vector3 initialPos;
 		public Vector2 direction = Vector2.Zero;
 		public String regularSpriteName = "player";
 		public String moveLeftSpriteName = "playerLeft";
@@ -18,6 +19,13 @@ namespace BlueSpace
 	public class PlayerControllerComponentSystem : ComponentSystem
 	{
 		public static float Speed = 500;
+
+		protected override void Start( string gameObjectId, ComponentData data )
+		{
+			PlayerControllerComponentData playerControllerData = data as PlayerControllerComponentData;
+			GetGameObject( gameObjectId ).Transform.Position = playerControllerData.initialPos;
+		}
+
 		protected override void Update( String gameObjectId, ComponentData data )
 		{
 			PlayerControllerComponentData playerControllerData = data as PlayerControllerComponentData;
@@ -68,6 +76,12 @@ namespace BlueSpace
 			{
 				playerSprite.assetName = selectedSprite;
 			}
+		}
+
+		public void Reset( String gameObjectId )
+		{
+			PlayerControllerComponentData playerController = GetComponentData<PlayerControllerComponentData>( gameObjectId );
+			GetGameObject( gameObjectId ).Transform.Position = playerController.initialPos;
 		}
 	} 
 }

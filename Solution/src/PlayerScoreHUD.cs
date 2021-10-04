@@ -16,14 +16,12 @@ namespace BlueSpace
 		{
 			PlayerScoreHUDComponentData playerHudData = data as PlayerScoreHUDComponentData;
 			PlayerScoreComponentData playerScoreData = GetComponentData<PlayerScoreComponentData>( playerHudData.id );
-			GetComponentData<TextComponentData>( gameObjectId ).text = "Score: " + playerScoreData.score.ToString( "D8" ) +
-					"\n   Best: " + playerScoreData.best.ToString( "D8" );
+			GetComponentData<TextComponentData>( gameObjectId ).text = playerScoreData.score.ToString( "D6" );
 
 			playerScoreData.onScored +=
 				( int newScore ) =>
 				{
-					GetComponentData<TextComponentData>( gameObjectId ).text = "Score: " + newScore.ToString("D8") +
-					"\n   Best: " + playerScoreData.best.ToString( "D8" );
+					GetComponentData<TextComponentData>( gameObjectId ).text = newScore.ToString("D6");
 				};
 		}
 	}
