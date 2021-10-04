@@ -11,6 +11,7 @@ namespace BlueSpace
 	{
 		public int points;
 		public float speed;
+		public String pickupSoundName;
 	}
 
 
@@ -36,11 +37,12 @@ namespace BlueSpace
 			if ( HasComponentData<PlayerHealthComponentData>( colliderId ) )
 			{
 				HealthPickupComponentData healthPickup = data as HealthPickupComponentData;
+				SoundComponentSystem.PlayOnce( healthPickup.pickupSoundName );
 				PlayerHealthComponentData playerHealth = GetComponentData<PlayerHealthComponentData>( colliderId );
 				playerHealth.health += healthPickup.points;
 				if ( playerHealth.health > playerHealth.maxHealth )
 					playerHealth.health = playerHealth.maxHealth;
-				// TODO sound effect
+
 				DestroyGameObject( gameObjectId );
 			}
 		}

@@ -9,6 +9,7 @@ namespace BlueSpace
 	{
 		public PlayerWeaponType upgradeType;
 		public float speed;
+		public string pickupSoundName;
 	}
 
 	public class UpgradePickupComponentSystem : ComponentSystem
@@ -35,8 +36,8 @@ namespace BlueSpace
 				UpgradePickupComponentData upgradePickup = data as UpgradePickupComponentData;
 				PlayerWeaponComponentData weaponData = GetComponentData<PlayerWeaponComponentData>( colliderId );
 				PlayerWeaponComponentSystem.SwitchWeapon( weaponData, upgradePickup.upgradeType );
+				SoundComponentSystem.PlayOnce( upgradePickup.pickupSoundName );
 
-				// TODO sound effect
 				DestroyGameObject( gameObjectId );
 			}
 		}

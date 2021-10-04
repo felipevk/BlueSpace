@@ -100,6 +100,10 @@ namespace BlueSpace
 				AssetManager.AddAsset<SoundEffectAsset>( "meteorHit" );
 				AssetManager.AddAsset<SoundEffectAsset>( "meteorDestroy" );
 				AssetManager.AddAsset<SoundEffectAsset>( "soft-alert" );
+				AssetManager.AddAsset<SoundEffectAsset>( "playerHit" );
+				AssetManager.AddAsset<SoundEffectAsset>( "playerDestroy" );
+				AssetManager.AddAsset<SoundEffectAsset>( "pickup" );
+				AssetManager.AddAsset<SongAsset>( "soundtrack1" );
 			}
 		}
 		public class MainScene : Scene
@@ -159,6 +163,8 @@ namespace BlueSpace
 				playerHealth.initialHealth = 5;
 				playerHealth.maxHealth = 8;
 				playerHealth.hitDuration = 1.5f;
+				playerHealth.hitSound = "playerHit";
+				playerHealth.destroySound = "playerDestroy";
 				SpriteBlinkComponentData playerBlink = CreateComponentData<SpriteBlinkComponentData>( player.Id );
 				playerBlink.blinkDuration = 0.1f;
 				BoxCollision2DComponentData playerCollider = GetComponentData<BoxCollision2DComponentData>( player.Id );
@@ -206,6 +212,7 @@ namespace BlueSpace
 				pickupSpawnerData.timeToUpgrade = new float[1];
 				pickupSpawnerData.timeToUpgrade[0] = 30;
 				pickupSpawnerData.timeWithoutPickups = 10f;
+				pickupSpawnerData.pickupSoundName = "pickup";
 
 				GameObject hud = CreateGameObject( "HUD" );
 
@@ -291,6 +298,12 @@ namespace BlueSpace
 				gameOverSubtitleText.scale = 1.0f;
 				gameOverSubtitleText.text = "Shoot to restart";
 
+				GameObject music = CreateGameObject( "Music" );
+				SoundComponentData musicData = CreateComponentData<SoundComponentData>( music.Id );
+				musicData.assetName = "soundtrack1";
+				musicData.loop = true;
+				musicData.volume = 0.2f;
+
 				GameObject gameManager = CreateGameObject( "GameManager" );
 				GameLogicComponentData gameLogicData = CreateComponentData<GameLogicComponentData>( gameManager.Id );
 				gameLogicData.playerId = player.Id; 
@@ -299,7 +312,8 @@ namespace BlueSpace
 				gameLogicData.playerScore = GetComponentData<PlayerScoreComponentData>( player.Id ); 
 				gameLogicData.playerWeapon = GetComponentData<PlayerWeaponComponentData>( player.Id ); 
 				gameLogicData.pickupSpawner = GetComponentData<PickupSpawnerComponentData>( pickupSpawner.Id ); 
-				gameLogicData.meteorSpawner = GetComponentData<MeteorSpawnerComponentData>( meteorSpawner.Id ); 
+				gameLogicData.meteorSpawner = GetComponentData<MeteorSpawnerComponentData>( meteorSpawner.Id );
+				gameLogicData.soundData = musicData; 
 
 				gameLogicData.startMenuTitle = gameTitleText;
 				gameLogicData.startMenuSubTitle = gameSubtitleText;

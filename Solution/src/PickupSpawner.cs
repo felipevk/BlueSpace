@@ -16,6 +16,7 @@ namespace BlueSpace
 		public float timeWithoutPickups;
 		public float[] timeToUpgrade;
 		public int currentUpgrade = 0;
+		public String pickupSoundName;
 	}
 
 	public class PickupSpawnerComponentSystem : ComponentSystem
@@ -48,6 +49,7 @@ namespace BlueSpace
 					HealthPickupComponentData healthPickupData = CreateComponentData<HealthPickupComponentData>( healthPickup.Id );
 					healthPickupData.points = 1;
 					healthPickupData.speed = 200;
+					healthPickupData.pickupSoundName = pickupSpawnerData.pickupSoundName;
 					BoxCollision2DComponentData healthCollider = GetComponentData<BoxCollision2DComponentData>( healthPickup.Id );
 					healthCollider.Width = 20;
 					healthCollider.Height = 20;
@@ -62,6 +64,7 @@ namespace BlueSpace
 					UpgradePickupComponentData upgradePickupData = CreateComponentData<UpgradePickupComponentData>( upgradePickup.Id );
 					upgradePickupData.upgradeType = weaponType;
 					upgradePickupData.speed = 200;
+					upgradePickupData.pickupSoundName = pickupSpawnerData.pickupSoundName;
 					BoxCollision2DComponentData upgradeCollider = GetComponentData<BoxCollision2DComponentData>( upgradePickup.Id );
 					upgradeCollider.Width = 20;
 					upgradeCollider.Height = 20;

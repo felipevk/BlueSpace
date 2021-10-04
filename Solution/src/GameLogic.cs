@@ -36,6 +36,7 @@ namespace BlueSpace
 		public PlayerWeaponComponentData playerWeapon;
 		public PlayerHealthComponentData playerHealth;
 		public PlayerControllerComponentData playerController;
+		public SoundComponentData soundData;
 
 		public String playerId;
 	}
@@ -158,6 +159,11 @@ namespace BlueSpace
 					PickupSpawnerComponentSystem.Reset( gameLogicData.pickupSpawner );
 					GetComponentSystem<PlayerControllerComponentSystem>().Reset( gameLogicData.playerId );
 					GetComponentSystem<PlayerHealthComponentSystem>().Reset( gameLogicData.playerId );
+
+					if ( !gameLogicData.soundData.isPlaying )
+					{
+						SoundComponentSystem.PlaySong( gameLogicData.soundData );
+					}
 					break;
 				case GameState.GameOver:
 					gameLogicData.startMenuTitle.enabled = false;

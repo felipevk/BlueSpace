@@ -15,6 +15,8 @@ namespace BlueSpace
 		public float currentHitTime;
 		public float hitDuration;
 		public Action onDeath;
+		public String hitSound;
+		public String destroySound;
 	}
 
 	public class PlayerHealthComponentSystem : ComponentSystem
@@ -53,14 +55,14 @@ namespace BlueSpace
 
 				if ( playerHealthData.health > 0 )
 				{
+					SoundComponentSystem.PlayOnce( playerHealthData.hitSound, 0.7f );
 					playerHealthData.currentHitTime = playerHealthData.hitDuration;
 					GetComponentData<BoxCollision2DComponentData>( gameObjectId ).enabled = false;
 					GetComponentData<SpriteBlinkComponentData>( gameObjectId ).enabled = true;
-					// TODO hit sound
 				}
 				else
 				{
-					// TODO destroy sound
+					SoundComponentSystem.PlayOnce( playerHealthData.destroySound );
 					GetComponentData<SpriteComponentData>( gameObjectId ).enabled = false;
 					playerHealthData.onDeath?.Invoke();
 				}

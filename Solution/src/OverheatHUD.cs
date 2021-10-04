@@ -37,7 +37,7 @@ namespace BlueSpace
 			{
 				if ( !overheatData.soundData.isPlaying )
 				{
-					SoundComponentSystem.Play( gameObjectId, overheatData.soundData );
+					SoundComponentSystem.PlaySoundEffect( gameObjectId, overheatData.soundData );
 					overheatData.hudTextData.enabled = true;
 					GetComponentData<TextBlinkComponentData>( overheatData.hudTextId ).enabled = true;
 				}
@@ -46,7 +46,7 @@ namespace BlueSpace
 			{
 				if ( overheatData.soundData.isPlaying )
 				{
-					SoundComponentSystem.Stop( gameObjectId, overheatData.soundData );
+					SoundComponentSystem.StopSoundEffect( gameObjectId, overheatData.soundData );
 					overheatData.hudTextData.enabled = false;
 					GetComponentData<TextBlinkComponentData>( overheatData.hudTextId ).enabled = false;
 				}
